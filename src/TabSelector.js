@@ -7,16 +7,36 @@ class TabSelector extends Component {
       activeId: 'home'
     };
     this.handleChangeTab = this.handleChangeTab.bind(this);
+    this.displayItem = this.displayItem.bind(this);
   }
 
   handleChangeTab(event) {
     const buttonId = event.target.id;
     this.setState({ activeId: buttonId });
   }
+  
+  displayItem(id) {
+    switch(id) {
+     case "home": 
+       return "This is the Home component!";
+     case "about":
+        return "This challenge is about tabs!"
+     case "contact":
+       return "Feel free to contact us!"
+     default:
+       return "Something went wrong"; 
+   }
+  }
+
+
+
+
 
   render() {
     const { activeId } = this.state;
     return (
+      <div>
+
       <div className="TabSelector">
         <button
           id="home"
@@ -39,6 +59,12 @@ class TabSelector extends Component {
         >
           Contact
         </button>
+      </div>
+      <div className="App-content">
+      {
+        this.displayItem(this.state.activeId)
+      }
+    </div>
       </div>
     );
   }
